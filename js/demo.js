@@ -36,3 +36,23 @@
 		navigate(linkEl);
 	});
 }
+// 从网络上读取某个excel文件，url必须同域，否则报错
+function readWorkbook(sheet, callback) {
+	var url = "config.xlsx";
+	var xhr = new XMLHttpRequest();
+	xhr.open('get', url, true);
+	xhr.responseType = 'arraybuffer';
+	xhr.onload = function () {
+		if (xhr.status === 200) {
+			var data = new Uint8Array(xhr.response);
+			var workbook = XLSX.read(data, {type: 'array'});
+			var json = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+			if (callback) {
+				callback(json);
+			}
+			console.log(workbook);
+			console.log(json);
+		}
+	};
+	xhr.send();
+}

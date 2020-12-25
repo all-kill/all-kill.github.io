@@ -92,49 +92,37 @@
             <h2 class="content__title">队内比赛</h2>
             <h2 class="content__subtitle">紧张、激烈、奖金丰厚</h2>
             <table>
+                <thead>
                 <tr>
                     <td>比赛时间</td>
                     <td>比赛名称</td>
                     <td>比赛链接</td>
                 </tr>
-                <tr>
-                    <td>2020-01-12</td>
-                    <td>三方万元争霸赛</td>
-                    <td><a href="https://www.bilibili.com/video/av83333628" target="_blank">https://www.bilibili.com/video/av83333628</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2019-11-11</td>
-                    <td>双11队内赛</td>
-                    <td><a href="https://www.bilibili.com/video/av75321922" target="_blank">https://www.bilibili.com/video/av75321922</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2019-08-22</td>
-                    <td>Uomi杯</td>
-                    <td><a href="https://www.bilibili.com/video/av64940892" target="_blank">https://www.bilibili.com/video/av64940892</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2019-06-30</td>
-                    <td>逗姜杯</td>
-                    <td><a href="https://www.bilibili.com/video/av57392667" target="_blank">https://www.bilibili.com/video/av57392667</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2019-06-22</td>
-                    <td>优雅杯</td>
-                    <td><a href="https://www.bilibili.com/video/av56567331" target="_blank">https://www.bilibili.com/video/av56567331</a>
-                    </td>
-                </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
             </table>
         </div>
     </div>
 </main>
+<script src="js/xlsx.core.min.js"></script>
 <script src="js/demo.js"></script>
 <script src="js/three.min.js"></script>
 <script src="js/demo6.js"></script>
 <script language="Javascript">
+    readWorkbook("队内比赛", function (json) {
+        var body = "";
+        for (let i = 0; i < json.length; i++) {
+            var item = json[i];
+            body += `<tr>
+                    <td>${item["比赛时间"]}</td>
+                    <td>${item["比赛名称"]}</td>
+                    <td><a href="${item["比赛链接"]}" target="_blank">${item["比赛链接"]}</a>
+                    </td>
+                </tr>`
+        }
+        document.getElementById("tbody").innerHTML = body;
+    });
     document.oncontextmenu = new Function("event.returnValue=false");
     document.onselectstart = new Function("event.returnValue=false");
     document.onkeydown = function (e) {

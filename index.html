@@ -79,6 +79,7 @@
 						gl_Position = projectionMatrix * mvPosition;
 					}
 
+
         </script>
         <script type="x-shader/x-fragment" id="wrapFragmentShader">
 					varying vec3 vColor;
@@ -89,6 +90,7 @@
 						vec4 color = vec4(vColor.xyz, 1.0) * textureColor;
 						gl_FragColor = color;
 					}
+
 
         </script>
         <div class="content__inner">
@@ -102,6 +104,7 @@
     <img src="" alt="" id="qqImg">
     <div id="personName"></div>
 </div>
+<script src="js/xlsx.core.min.js"></script>
 <script src="js/demo.js"></script>
 <script src="js/three.min.js"></script>
 <script src="js/TweenMax.min.js"></script>

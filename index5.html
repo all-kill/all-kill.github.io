@@ -95,81 +95,31 @@
                     <td>直播链接</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>A丶K丨三仔</td>
-                    <td><a href="https://space.bilibili.com/334613642" target="_blank">https://space.bilibili.com/334613642</a>
-                    </td>
-                    <td><a href="https://www.douyu.com/671186" target="_blank">https://www.douyu.com/671186</a></td>
-                </tr>
-                <tr>
-                    <td>A丶K丨晨星</td>
-                    <td><a href="https://space.bilibili.com/224591941" target="_blank">https://space.bilibili.com/224591941</a>
-                    </td>
-                    <td><a href="https://www.douyu.com/1173952" target="_blank">https://www.douyu.com/1173952</a></td>
-                </tr>
-                <tr>
-                    <td>AK丶找要o</td>
-                    <td><a href="https://space.bilibili.com/232910729/" target="_blank">https://space.bilibili.com/232910729</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶占逗姜</td>
-                    <td><a href="https://space.bilibili.com/108263762" target="_blank">https://space.bilibili.com/108263762</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶宝发c</td>
-                    <td><a href="https://space.bilibili.com/46807364" target="_blank">https://space.bilibili.com/46807364</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶绿毛</td>
-                    <td><a href="https://space.bilibili.com/13362942" target="_blank">https://space.bilibili.com/13362942</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶说在心里</td>
-                    <td><a href="https://space.bilibili.com/34089046" target="_blank">https://space.bilibili.com/34089046</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶企鹅果果</td>
-                    <td><a href="https://space.bilibili.com/318973967" target="_blank">https://space.bilibili.com/318973967</a>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>AK丶鱼蛋</td>
-                    <td></td>
-                    <td><a href="https://www.douyu.com/5910320" target="_blank">https://www.douyu.com/5910320</a></td>
-                </tr>
-                <tr>
-                    <td>AK丶828</td>
-                    <td></td>
-                    <td><a href="https://www.douyu.com/4880466" target="_blank">https://www.douyu.com/4880466</a></td>
-                </tr>
-                <tr>
-                    <td>AK丶瘾君</td>
-                    <td></td>
-                    <td><a href="https://www.douyu.com/4880466" target="_blank">https://www.douyu.com/330439</a></td>
-                </tr>
+                <tbody id="tbody">
                 </tbody>
             </table>
         </div>
     </div>
 </main>
+<script src="js/xlsx.core.min.js"></script>
 <script src="js/demo.js"></script>
 <script src="js/three.min.js"></script>
 <script src="js/perlin.js"></script>
 <script src="js/TweenMax.min.js"></script>
 <script src="js/demo5.js"></script>
 <script language="Javascript">
+    readWorkbook("队员空间", function (json) {
+        var body = "";
+        for (let i = 0; i < json.length; i++) {
+            var item = json[i];
+            body += `<tr>
+                    <td>${item["队员昵称"]}</td>
+                    <td><a href="${item["空间链接"]}" target="_blank">${item["空间链接"] || ""}</a></td>
+                    <td><a href="${item["直播链接"]}" target="_blank">${item["直播链接"] || ""}</a></td>
+                </tr>`
+        }
+        document.getElementById("tbody").innerHTML = body;
+    });
     document.oncontextmenu = new Function("event.returnValue=false");
     document.onselectstart = new Function("event.returnValue=false");
     document.onkeydown = function (e) {
