@@ -166,10 +166,10 @@ readWorkbook("花名册", function (json) {
     persons = json;
 });
 function onDotHover(index) {
-    if (index < (persons.length * 10)) {
+    if (index < (persons.length * 20)) {
         tag.style.visibility = "visible";
         var person = persons[index % persons.length];
-        personName.innerText = person["昵称"];
+        personName.innerText = "AK丶" + person["昵称"];
         qqImg.src = "https://q1.qlogo.cn/g?b=qq&nk=" + person["QQ"] + "&s=100";
         tag.style.left = (mouse.x + 1) * width / 2 + canvas.getBoundingClientRect().left + "px";
         tag.style.top = (1 - mouse.y) * height / 2  + canvas.getBoundingClientRect().top + "px";
