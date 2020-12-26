@@ -50,8 +50,8 @@ function readWorkbook(sheet, callback) {
 			if (callback) {
 				callback(json);
 			}
-			console.log(workbook);
-			console.log(json);
+			// console.log(workbook);
+			// console.log(json);
 		}
 	};
 	xhr.send();
